@@ -9,39 +9,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nisum.contollertopic.Topic;
+
 @RestController
 public class CourseController {
 
 	@Autowired
 	private CourseService courseService;
 
-	@RequestMapping("/topics")
-	public List<Course> getAllCourses() {
+	@RequestMapping("/topics/{id}/courses")
+	public List<Course> getAllCourses(@PathVariable String id) {
 
-		return courseService.getAllCourses();
+		return courseService.getAllCourses(id);
 
 	}
 
-	@RequestMapping("/topics/{id}")
-	public Course getTopic(@PathVariable String id) {
+	@RequestMapping("/topics/{topicId}/courses/{id}")
+	public Course getCourse(@PathVariable String id) {
 
 		return courseService.getCourse(id);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/topics")
-	public void addTopic(@RequestBody Course topic) {
-
-		courseService.addCourse(topic);
+	@RequestMapping(method = RequestMethod.POST, value = "/topics/{topicId}/courses")
+	public void addCourse(@RequestBody Course course, @PathVariable String topicId) {
+		
+		course.setTopic(new Topic(topicId,"",""));
+		
+		courseService.addCourse(course);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/topics/{id}")
-	public void updateTopic(@RequestBody Course topic, @PathVariable String id) {
+	@RequestMapping(method = RequestMethod.PUT, value = "/topics/{topicId}/courses/{id}")
+	public void updateCourse(@RequestBody Course course, @PathVariable String topicId, @PathVariable String id) {
 
-		courseService.updateCourse(topic, id);
+		course.setTopic(new Topic(topicId,"",""));
+		
+		courseService.updateCourse(course);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
-	public void deleteTopic(@PathVariable String id) {
+	@RequestMapping(method = RequestMethod.DELETE, value = "/topics/{topicId}/courses/{id}")
+	public void deleteCourse(@PathVariable String id) {
 
 		courseService.deleteCourse(id);
 	}

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: Spring_Data_JPA
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: folio 9470m
+Built-By: NIHAL
 Implementation-Vendor-Id: com.nisum
-Build-Jdk: 1.8.0_121
+Build-Jdk: 1.8.0_144
 Implementation-URL: http://projects.spring.io/spring-boot/Spring_Data_
  JPA/
 Created-By: Maven Integration for Eclipse
